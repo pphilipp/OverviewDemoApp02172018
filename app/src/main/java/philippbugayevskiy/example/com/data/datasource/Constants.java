@@ -10,4 +10,7 @@ public class Constants {
     public static final String DATA_PATTERN_TIME = "HH:mm";
 
     public static final String KEY_FRAGMENT = "key_fragment";
+
+    //endpoints
+    public static final String API_ENDPOINT_PROPERTIES = "mobileapi";
 }

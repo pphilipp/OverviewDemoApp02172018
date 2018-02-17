@@ -11,7 +11,7 @@ public class PropertiesEntity {
     public Integer total;
     @SerializedName("res")
     @Expose
-    public List<ReEntity> res = null;
+    public List<ReEntity> res;
 
     public boolean isReEntityListNotEmpty() {
         return res != null && res.size() > 0;

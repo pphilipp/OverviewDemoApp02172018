@@ -1,8 +1,17 @@
 package philippbugayevskiy.example.com.data.datasource;
 
 
+import com.amatkivskiy.result.Result;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+
+import philippbugayevskiy.example.com.data.entity.ReEntity;
 import philippbugayevskiy.example.com.data.net.MobileApi;
 import philippbugayevskiy.example.com.presentation.view.preferences.IntPreference;
+
+import static philippbugayevskiy.example.com.data.datasource.verifier.Verifiers.verifyResponseAndFetchPropertiesList;
 
 public class DefaultMetadataDataSource {// TODO: 2/17/18 Add interface
     MobileApi restApi;
@@ -15,5 +24,10 @@ public class DefaultMetadataDataSource {// TODO: 2/17/18 Add interface
         this.endpointEnvPrefs = endpointEnvPrefs;
     }
 
-    // TODO: 2/17/18 create a getters for Usecase data sorces. 
+    public Observable<Result<List<ReEntity>, Throwable>> getPropertiesByPageNumber(int pageNumber) {
+        return restApi.getPropertiesByPageNumber(metadataHost, Constants.API_ENDPOINT_PROPERTIES,
+                Integer.toString(pageNumber))
+                      .cache()
+                      .map(verifyResponseAndFetchPropertiesList());
+    }
 }

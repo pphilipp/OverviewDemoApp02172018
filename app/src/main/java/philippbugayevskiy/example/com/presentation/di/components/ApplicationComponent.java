@@ -25,7 +25,6 @@ import dagger.Component;
 import philippbugayevskiy.example.com.domain.executor.PostExecutionThread;
 import philippbugayevskiy.example.com.domain.executor.ThreadExecutor;
 import philippbugayevskiy.example.com.domain.repository.MetadataRepository;
-import philippbugayevskiy.example.com.presentation.debug.DebugAppContainer;
 import philippbugayevskiy.example.com.presentation.di.modules.ApplicationModule;
 import philippbugayevskiy.example.com.presentation.di.modules.DebugModule;
 import philippbugayevskiy.example.com.presentation.di.modules.NetworkModule;
@@ -52,8 +51,6 @@ public interface ApplicationComponent {
     PostExecutionThread postExecutionThread();
 
     MetadataRepository provideMetadataRepository();
-
-    DebugAppContainer provideDebugContainer();
 
     SharedPreferences provideSharedPreferences();
 }

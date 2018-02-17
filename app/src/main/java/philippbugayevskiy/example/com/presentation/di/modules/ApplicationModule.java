@@ -16,7 +16,6 @@ import philippbugayevskiy.example.com.data.datasource.DefaultDiskDataStore;
 import philippbugayevskiy.example.com.data.executor.JobExecutor;
 import philippbugayevskiy.example.com.domain.executor.PostExecutionThread;
 import philippbugayevskiy.example.com.domain.executor.ThreadExecutor;
-import philippbugayevskiy.example.com.presentation.debug.DebugAppContainer;
 import philippbugayevskiy.example.com.presentation.di.NetworkEnv;
 import philippbugayevskiy.example.com.presentation.view.preferences.IntPreference;
 
@@ -66,11 +65,5 @@ public class ApplicationModule {
     @Singleton
     SharedPreferences provideSharedPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
-    }
-
-    @Provides
-    @Singleton
-    DebugAppContainer provideDebugAppContainer(@NetworkEnv IntPreference networkEnv) {
-        return new DebugAppContainer(networkEnv);
     }
 }

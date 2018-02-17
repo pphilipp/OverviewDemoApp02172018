@@ -72,7 +72,7 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
         getComponent(UserComponent.class).inject(this);
         init();
 
-        presenter.fetchData("0");
+        presenter.fetchData(0);
     }
 
     private void init() {
