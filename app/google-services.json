@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "28872745792",
+    "firebase_url": "https://fir-iot-4bef9.firebaseio.com",
+    "project_id": "fir-iot-4bef9",
+    "storage_bucket": "fir-iot-4bef9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28872745792:android:2b3faea277a06443",
+        "android_client_info": {
+          "package_name": "net.validcat.baseline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28872745792-8v7or2qem3noarh8orm3hons2u6qsm04.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.validcat.baseline",
+            "certificate_hash": "1d9b9443c9c0564af0fd4a9f338c776974ea5af2"
+          }
+        },
+        {
+          "client_id": "28872745792-h8164fbq7tb9rsr4228mp672b7mv1d4l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVp-80XWdRcNCM8PaXFgaHdihHq2-1V3s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28872745792-h8164fbq7tb9rsr4228mp672b7mv1d4l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
