@@ -73,7 +73,7 @@ public class OverviewListPresenter implements Presenter  {
     }
 
     private void render(List<ReEntity> resProperties) {
-        // TODO: 2/17/18 renderList
+        view.renderUI(resProperties);
     }
 
     private void showError(Throwable error) {

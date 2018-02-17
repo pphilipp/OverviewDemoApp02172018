@@ -4,27 +4,32 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import philippbugayevskiy.example.com.R;
+import philippbugayevskiy.example.com.data.entity.ReEntity;
 import philippbugayevskiy.example.com.presentation.di.components.UserComponent;
-import philippbugayevskiy.example.com.presentation.model.Property;
 import philippbugayevskiy.example.com.presentation.presenter.OverviewListPresenter;
 import philippbugayevskiy.example.com.presentation.view.BaseFragment;
-import philippbugayevskiy.example.com.presentation.view.adapter.OverViewAdapter;
+import philippbugayevskiy.example.com.presentation.view.adapter.OverviewAdapter;
 
 public class OverviewListFragment extends BaseFragment implements OverviewListView{
     @Inject OverviewListPresenter presenter;
 
-    OverViewAdapter adapter;
-    List<Property> properties;
+    @BindView(R.id.rv) RecyclerView rvProperties;
+    OverviewAdapter adapter;
+    List<ReEntity> properties;
 
     public OverviewListFragment() {
         setRetainInstance(true);
@@ -68,6 +73,16 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
         initialize();
     }
 
+    private void initRecyclerView() {
+        rvProperties.setHasFixedSize(true);
+        rvProperties.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        properties = new ArrayList<>();
+
+        adapter = new OverviewAdapter(getActivity(), properties);
+        rvProperties.setAdapter(adapter);
+    }
+
     private void initialize() {
         getComponent(UserComponent.class).inject(this);
         init();
@@ -79,8 +94,10 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
         presenter.setView(this);
     }
 
-    private void initRecyclerView() {
-        // TODO: 2/17/18 impl RecyclerView.
+    @Override
+    public void renderUI(List<ReEntity> properties) {
+        this.properties.addAll(properties);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
