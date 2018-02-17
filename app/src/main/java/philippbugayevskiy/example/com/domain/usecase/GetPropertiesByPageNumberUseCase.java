@@ -15,6 +15,7 @@ import philippbugayevskiy.example.com.presentation.utils.Preconditions;
 public class GetPropertiesByPageNumberUseCase extends UseCase<List<ReEntity>, Throwable>{
     private MetadataRepository metadataRepository;
     private int pageNumber;
+    private String order = "";
 
     public GetPropertiesByPageNumberUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread,
                                             MetadataRepository metadataRepository) {
@@ -24,14 +25,20 @@ public class GetPropertiesByPageNumberUseCase extends UseCase<List<ReEntity>, Th
     }
 
     public GetPropertiesByPageNumberUseCase lookForPageNumber(int pageNumber) {
-        Preconditions.checkNotNull(pageNumber, "callSign can't be null or empty");
+        Preconditions.checkNotNull(pageNumber, "pageNumber can't be null or empty");
         this.pageNumber = pageNumber;
+
+        return this;
+    }
+
+    public GetPropertiesByPageNumberUseCase lookForOrder(String order) {
+        this.order = order;
 
         return this;
     }
 
     @Override
     public Observable<Result<List<ReEntity>, Throwable>> getRawObservable() {
-        return metadataRepository.getPropertiesByPageNumber(pageNumber);
+        return metadataRepository.getPropertiesByPageNumber(pageNumber, order);
     }
 }

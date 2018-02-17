@@ -21,7 +21,9 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import philippbugayevskiy.example.com.data.datasource.Constants;
 import philippbugayevskiy.example.com.presentation.view.overview.OverviewListActivity;
+import philippbugayevskiy.example.com.presentation.view.overview.SortActivity;
 
 
 @Singleton
@@ -30,7 +32,12 @@ public class Navigator {
     @Inject
     public Navigator() {}
 
-    public static void navigateToOverviewListActivity(@NonNull Context context){
-        context.startActivity(OverviewListActivity.createStartIntent(context));
+    public static void navigateToOverviewListActivity(@NonNull Context context, String order){
+        context.startActivity(OverviewListActivity.createStartIntent(context)
+                  .putExtra(Constants.EXTRA_ORDER_ID, order));
+    }
+
+    public static void navigateToSortActivity(@NonNull Context context){
+        context.startActivity(SortActivity.createStartIntent(context));
     }
 }

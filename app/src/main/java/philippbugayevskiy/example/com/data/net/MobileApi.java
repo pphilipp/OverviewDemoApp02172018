@@ -12,5 +12,6 @@ public interface MobileApi {
     @GET("//{host}/{endpoint}?")
     Observable<Response<PropertiesEntity>> getPropertiesByPageNumber(@Path("host")String metadataHost,
                                                                      @Path("endpoint") String fullEndpoint,
-                                                                     @Query("page") String pageNumber);
+                                                                     @Query("page") String pageNumber,
+                                                                     @Query("order") String order);
 }

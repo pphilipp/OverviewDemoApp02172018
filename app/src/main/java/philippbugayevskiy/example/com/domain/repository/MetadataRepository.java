@@ -10,6 +10,6 @@ import philippbugayevskiy.example.com.data.entity.ReEntity;
 
 public interface MetadataRepository {
 
-    Observable<Result<List<ReEntity>,Throwable>> getPropertiesByPageNumber(int pageNumber);
+    Observable<Result<List<ReEntity>,Throwable>> getPropertiesByPageNumber(int pageNumber, String order);
 
 }

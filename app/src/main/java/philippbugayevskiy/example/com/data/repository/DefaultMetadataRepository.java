@@ -21,7 +21,7 @@ public class DefaultMetadataRepository implements MetadataRepository {
     }
 
     @Override
-    public Observable<Result<List<ReEntity>, Throwable>> getPropertiesByPageNumber(int pageNumber) {
-        return dataSource.getPropertiesByPageNumber(pageNumber);
+    public Observable<Result<List<ReEntity>, Throwable>> getPropertiesByPageNumber(int pageNumber, String order) {
+        return dataSource.getPropertiesByPageNumber(pageNumber, order);
     }
 }

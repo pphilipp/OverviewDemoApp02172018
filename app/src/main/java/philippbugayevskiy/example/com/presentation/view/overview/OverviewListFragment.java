@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,21 +17,22 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import philippbugayevskiy.example.com.R;
+import philippbugayevskiy.example.com.data.datasource.Constants;
 import philippbugayevskiy.example.com.data.entity.ReEntity;
 import philippbugayevskiy.example.com.presentation.di.components.UserComponent;
 import philippbugayevskiy.example.com.presentation.presenter.OverviewListPresenter;
 import philippbugayevskiy.example.com.presentation.view.BaseFragment;
 import philippbugayevskiy.example.com.presentation.view.adapter.EndlessRecyclerViewScrollListener;
 import philippbugayevskiy.example.com.presentation.view.adapter.OverviewAdapter;
-import solid.collectors.ToList;
 
 public class OverviewListFragment extends BaseFragment implements OverviewListView{
     @Inject OverviewListPresenter presenter;
 
     @BindView(R.id.rv) RecyclerView rvProperties;
-    OverviewAdapter adapter;
-    List<ReEntity> properties;
+    private OverviewAdapter adapter;
+    private List<ReEntity> properties;
     private EndlessRecyclerViewScrollListener scrollListener;
+    private String order = Constants.EMPTY_STRING;
 
     public OverviewListFragment() {
         setRetainInstance(true);
@@ -42,9 +41,7 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
     public static Fragment newInstance(Intent intent) {
         final OverviewListFragment fragment = new OverviewListFragment();
         final Bundle args = new Bundle();
-
-        // TODO: 2/17/18  handle parameters of sorting
-
+        args.putString(Constants.EXTRA_ORDER_ID, intent.getStringExtra(Constants.EXTRA_ORDER_ID));
         fragment.setArguments(args);
 
         return fragment;
@@ -68,7 +65,7 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
         if (null == getArguments())
             return;
 
-        // TODO: 2/17/18 handle  getArguments()
+        order = getArguments().getString(Constants.EXTRA_ORDER_ID, Constants.EMPTY_STRING);
     }
 
     @Override
@@ -88,7 +85,7 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
 
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                presenter.fetchData(page);
+                presenter.fetchData(page, order);
             }
         };
         rvProperties.addOnScrollListener(scrollListener);
@@ -100,7 +97,7 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
         getComponent(UserComponent.class).inject(this);
         init();
 
-        presenter.fetchData(0);
+        presenter.fetchData(0, order);
     }
 
     private void init() {

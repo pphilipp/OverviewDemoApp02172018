@@ -5,15 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import philippbugayevskiy.example.com.R;
 
 import philippbugayevskiy.example.com.presentation.di.HasComponent;
 import philippbugayevskiy.example.com.presentation.di.components.DaggerUserComponent;
 import philippbugayevskiy.example.com.presentation.di.components.UserComponent;
+import philippbugayevskiy.example.com.presentation.navigation.Navigator;
 import philippbugayevskiy.example.com.presentation.view.BaseActivity;
 
 public class OverviewListActivity extends BaseActivity implements HasComponent<UserComponent>{
@@ -21,6 +25,7 @@ public class OverviewListActivity extends BaseActivity implements HasComponent<U
 
     boolean doubleBackToExitPressedOnce = false;
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar_title) TextView tvSort;
 
     public static Intent createStartIntent(Context context) {
         return new Intent(context, OverviewListActivity.class)
@@ -36,7 +41,7 @@ public class OverviewListActivity extends BaseActivity implements HasComponent<U
         toolbar.setNavigationIcon(null);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         initializeActivity(savedInstanceState);
         initializeInjector();
@@ -68,6 +73,12 @@ public class OverviewListActivity extends BaseActivity implements HasComponent<U
         } else {
             doubleBackToExitFlag();
         }
+    }
+
+    @OnClick(R.id.toolbar_title)
+    public void sort(View view) {
+        Navigator.navigateToSortActivity(this);
+        finish();
     }
 
     private void doubleBackToExitFlag() {

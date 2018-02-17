@@ -17,7 +17,7 @@ import philippbugayevskiy.example.com.presentation.view.overview.OverviewListVie
 public class OverviewListPresenter implements Presenter  {
     private  OverviewListView view;
     private final CompositeDisposable disposables;
-    GetPropertiesByPageNumberUseCase getPropertiesByPageNumberUseCase;
+    private GetPropertiesByPageNumberUseCase getPropertiesByPageNumberUseCase;
 
     @Inject
     public OverviewListPresenter(GetPropertiesByPageNumberUseCase getPropertiesByPageNumberUseCase) {
@@ -29,9 +29,10 @@ public class OverviewListPresenter implements Presenter  {
         this.view = view;
     }
 
-    public void fetchData(int pageNumber) {
+    public void fetchData(int pageNumber, String order) {
         disposables.add(getPropertiesByPageNumberUseCase
                 .lookForPageNumber(pageNumber)
+                .lookForOrder(order)
                 .getConfiguredObservable()
                 .subscribeWith(new GetPropertiesByPageNumberObserver()));
     }

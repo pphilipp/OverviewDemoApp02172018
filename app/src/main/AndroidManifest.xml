@@ -23,9 +23,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".presentation.view.overview.SortActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="da82a6871cfd824f64b08ab9fa14c341eee8f94b" />
+            android:value="da82a6871cfd824f64b08ab9fa14c341eee8f94b"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

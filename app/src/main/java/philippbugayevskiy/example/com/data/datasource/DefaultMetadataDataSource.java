@@ -24,9 +24,9 @@ public class DefaultMetadataDataSource {// TODO: 2/17/18 Add interface
         this.endpointEnvPrefs = endpointEnvPrefs;
     }
 
-    public Observable<Result<List<ReEntity>, Throwable>> getPropertiesByPageNumber(int pageNumber) {
+    public Observable<Result<List<ReEntity>, Throwable>> getPropertiesByPageNumber(int pageNumber, String order) {
         return restApi.getPropertiesByPageNumber(metadataHost, Constants.API_ENDPOINT_PROPERTIES,
-                Integer.toString(pageNumber))
+                Integer.toString(pageNumber), order)
                       .cache()
                       .map(verifyResponseAndFetchPropertiesList());
     }
