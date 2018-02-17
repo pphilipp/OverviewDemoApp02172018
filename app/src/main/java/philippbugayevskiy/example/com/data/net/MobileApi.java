@@ -8,7 +8,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MobileApi {
-//    https://www.propertyfinder.ae/mobileapi?page=0
 
     @GET("//{host}/{endpoint}?")
     Observable<Response<PropertiesEntity>> getPropertiesByPageNumber(@Path("host")String metadataHost,

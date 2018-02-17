@@ -16,8 +16,6 @@ import philippbugayevskiy.example.com.data.datasource.DefaultDiskDataStore;
 import philippbugayevskiy.example.com.data.executor.JobExecutor;
 import philippbugayevskiy.example.com.domain.executor.PostExecutionThread;
 import philippbugayevskiy.example.com.domain.executor.ThreadExecutor;
-import philippbugayevskiy.example.com.presentation.di.NetworkEnv;
-import philippbugayevskiy.example.com.presentation.view.preferences.IntPreference;
 
 
 /**
