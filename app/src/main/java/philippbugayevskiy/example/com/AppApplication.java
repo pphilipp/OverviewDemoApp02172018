@@ -45,7 +45,6 @@ public class AppApplication extends Application {
 
         this.initializeTimber();
         this.initializeInjector();
-        this.initializeLeakDetection();
     }
 
     private void initializeTimber() {
@@ -61,12 +60,7 @@ public class AppApplication extends Application {
     public ApplicationComponent getApplicationComponent() {
         return this.applicationComponent;
     }
-
-    private void initializeLeakDetection() {
-        if (BuildConfig.DEBUG) {
-            LeakCanary.install(this);
-        }
-    }
+    
 
     // TODO: 1/31/18 move to injections
     public DataSource.Factory buildDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
