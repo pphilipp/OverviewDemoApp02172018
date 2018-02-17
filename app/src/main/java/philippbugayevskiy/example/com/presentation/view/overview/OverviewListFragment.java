@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,9 @@ import philippbugayevskiy.example.com.data.entity.ReEntity;
 import philippbugayevskiy.example.com.presentation.di.components.UserComponent;
 import philippbugayevskiy.example.com.presentation.presenter.OverviewListPresenter;
 import philippbugayevskiy.example.com.presentation.view.BaseFragment;
+import philippbugayevskiy.example.com.presentation.view.adapter.EndlessRecyclerViewScrollListener;
 import philippbugayevskiy.example.com.presentation.view.adapter.OverviewAdapter;
+import solid.collectors.ToList;
 
 public class OverviewListFragment extends BaseFragment implements OverviewListView{
     @Inject OverviewListPresenter presenter;
@@ -30,6 +33,7 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
     @BindView(R.id.rv) RecyclerView rvProperties;
     OverviewAdapter adapter;
     List<ReEntity> properties;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     public OverviewListFragment() {
         setRetainInstance(true);
@@ -74,12 +78,21 @@ public class OverviewListFragment extends BaseFragment implements OverviewListVi
     }
 
     private void initRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rvProperties.setHasFixedSize(true);
-        rvProperties.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        rvProperties.setLayoutManager(linearLayoutManager);
         properties = new ArrayList<>();
 
         adapter = new OverviewAdapter(getActivity(), properties);
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                presenter.fetchData(page);
+            }
+        };
+        rvProperties.addOnScrollListener(scrollListener);
+
         rvProperties.setAdapter(adapter);
     }
 
