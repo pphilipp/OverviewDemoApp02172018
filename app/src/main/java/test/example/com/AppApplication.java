@@ -16,33 +16,17 @@
 package test.example.com;
 
 import android.app.Application;
-
-import com.crashlytics.android.Crashlytics;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
-import com.google.android.exoplayer2.upstream.HttpDataSource;
-import com.google.android.exoplayer2.util.Util;
-
-import test.example.com.BuildConfig;
 import test.example.com.presentation.di.components.ApplicationComponent;
 import test.example.com.presentation.di.components.DaggerApplicationComponent;
 import test.example.com.presentation.di.modules.ApplicationModule;
-import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 public class AppApplication extends Application {
-    protected String userAgent;
     private ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        userAgent = Util.getUserAgent(this, "ExoPlayerDemo");
-        Fabric.with(this, new Crashlytics());
 
         this.initializeTimber();
         this.initializeInjector();
@@ -61,21 +45,4 @@ public class AppApplication extends Application {
     public ApplicationComponent getApplicationComponent() {
         return this.applicationComponent;
     }
-
-
-    // TODO: 1/31/18 move to injections
-    public DataSource.Factory buildDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
-        return new DefaultDataSourceFactory(this, bandwidthMeter,
-                buildHttpDataSourceFactory(bandwidthMeter));
-    }
-
-    public HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
-        return new DefaultHttpDataSourceFactory(userAgent, bandwidthMeter, DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
-                DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS, true);
-    }
-
-    public boolean useExtensionRenderers() {
-        return BuildConfig.FLAVOR.equals("withExtensions");
-    }
-
 }
