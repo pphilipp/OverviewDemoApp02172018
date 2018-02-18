@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="philippbugayevskiy.example.com">
+    package="test.example.com">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".AppApplication"
+        android:name="test.example.com.AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".presentation.view.overview.OverviewListActivity"
+            android:name="test.example.com.presentation.view.overview.OverviewListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,9 +23,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="test.example.com.presentation.view.sort.SortActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="da82a6871cfd824f64b08ab9fa14c341eee8f94b" />
+            android:value="da82a6871cfd824f64b08ab9fa14c341eee8f94b"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 
