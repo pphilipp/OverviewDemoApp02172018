@@ -20,8 +20,8 @@ allprojects {
         google()
     }
     ext {
-        setup = [androidApplicationId     : 'philippbugayevskiy.example.com',
-                 testApplicationId        : 'philippbugayevskiy.example.com.test',
+        setup = [androidApplicationId     : 'test.example.com',
+                 testApplicationId        : 'test.example.com.test',
                  testInstrumentationRunner: 'android.support.test.runner.AndroidJUnitRunner',
                  androidVersionCode       : 1,
                  androidVersionName       : '1.0',
