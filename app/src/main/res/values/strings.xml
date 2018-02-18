@@ -7,5 +7,11 @@
     <string name="exception_message_no_connection">There is no internet connection</string>
     <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
     <string name="double_click_to_back">Please click Back again to exit</string>
+    <string name="no_property_available">No property available at the moment</string>
+    <string name="btn_sort_toolbar">Sort</string>
+    <string name="price_descending">Price descending</string>
+    <string name="price_ascending">Price ascending</string>
+    <string name="beds_descending">Beds descending</string>
+    <string name="beds_ascending">Beds ascending</string>
 
 </resources>

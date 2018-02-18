@@ -82,14 +82,14 @@ android {
 
     productFlavors {
         prod {
-            buildConfigField 'String', 'HOST', '"feed.entertainment.tv.theplatform.eu"'
+            buildConfigField 'String', 'HOST', '"www.propertyfinder.ae"'
             dimension "tier"
         }
         dev {
             applicationIdSuffix ".dev"
             versionNameSuffix ".${versionBuild}.dev"
 
-            buildConfigField 'String', 'HOST', '"mobileapi"'
+            buildConfigField 'String', 'HOST', '"www.propertyfinder.ae"'
 
             dimension "tier"
         }
@@ -97,7 +97,7 @@ android {
             applicationIdSuffix ".staging"
             versionNameSuffix ".${versionBuild}.staging"
 
-            buildConfigField 'String', 'HOST', '"mobileapi"'
+            buildConfigField 'String', 'HOST', '"www.propertyfinder.ae"'
 
             dimension "tier"
         }
@@ -105,7 +105,7 @@ android {
             applicationIdSuffix ".testing"
             versionNameSuffix ".${versionBuild}.testing"
 
-            buildConfigField 'String', 'HOST', '"mobileapi"'
+            buildConfigField 'String', 'HOST', '"www.propertyfinder.ae"'
 
             dimension "tier"
         }
